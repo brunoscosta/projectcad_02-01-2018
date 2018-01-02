@@ -56,5 +56,11 @@ public class CadastroUsuarioService {
 		obrigatória os dados sao salvos*/
 		usuarios.save(usuario);
 	}
+	
+	//delete de usuarios
+	@Transactional
+	public void excluir(Long codigo) {
+		usuarios.delete(codigo);
+	}
 
 }
