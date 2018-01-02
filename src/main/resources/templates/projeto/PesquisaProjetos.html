@@ -86,16 +86,18 @@
 						
 						<tbody>
 							<tr th:each="projeto : ${projetos}">
-								<td class="text-center" th:text="${projeto.codigo}">1234</td>
-								<td th:text="${projeto.nome}">Multi</td>
-								<td th:text="${projeto.status.descricao}">Programado</td>
-								<td th:text="${projeto.dataInicio}">26/12/2018</td>
-								<td th:text="${projeto.dataFim}">29/12/2018</td>
+								<td class="text-center" th:text="${projeto.codigo}"></td>
+								<td th:text="${projeto.nome}"></td>
+								<td th:text="${projeto.status.descricao}"></td>
+								<td th:text="${projeto.dataInicio}"></td>
+								<td th:text="${projeto.dataFim}"></td>
 								<td class="text-center">
-									<a class="btn  btn-link  btn-xs" title="Editar" th:href="@{/projetos/{codigo}(codigo=${projeto.codigo})}"> 
+									<a class="btn  btn-link  btn-xs js-tooltip" title="Editar" 
+										th:href="@{/projetos/{codigo}(codigo=${projeto.codigo})}"> 
 										<i class="glyphicon glyphicon-pencil"></i>
 									</a>
-									<a class="btn  btn-link  btn-xs" title="Excluir">
+									<a class="btn  btn-link  btn-xs js-tooltip js-exclusao-btn" title="Excluir" 
+										href="#" data:url="@{/projetos/{codigo}(codigo=${projeto.codigo})}" data:codigo="${projeto.codigo}" data:objeto="${projeto.nome}">
 										<i class="glyphicon glyphicon-remove"></i>
 									</a>
 								</td>
