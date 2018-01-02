@@ -3,15 +3,18 @@ package com.eletroinfo.projectcad.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -22,6 +25,7 @@ import com.eletroinfo.projectcad.repository.filter.ProjetoFilter;
 import com.eletroinfo.projectcad.service.CadastroProjetoService;
 
 //Controller para projetos
+
 @Controller
 public class ProjetosController {
 	
@@ -57,7 +61,7 @@ public class ProjetosController {
 	}
 	
 	//realizando pesquisa de projetos
-	@GetMapping("/")
+	@GetMapping("/projetos")
 	public ModelAndView pesquisar(ProjetoFilter projetoFilter, BindingResult result) {
 		ModelAndView mv = new ModelAndView("projeto/PesquisaProjetos");
 		mv.addObject("status", Status.values());
@@ -68,11 +72,19 @@ public class ProjetosController {
 	}
 	
 	@GetMapping("/projetos/{codigo}")
-	public ModelAndView editar(@PathVariable ("codigo") Projeto projeto ) {
+	public ModelAndView editar(@PathVariable("codigo")  Projeto projeto ) {
 		ModelAndView mv = novo(projeto);
 		mv.addObject(projeto);
 
 		return mv;
+	}
+	
+	@DeleteMapping("/projetos/{codigo}")
+	public @ResponseBody ResponseEntity<?> excluir(@PathVariable("codigo") Long codigo) {
+		
+			cadastroProjetoService.excluir(codigo);
+		 
+		return ResponseEntity.ok().build();
 	}
 	
 }
