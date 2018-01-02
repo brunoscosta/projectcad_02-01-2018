@@ -2,12 +2,11 @@
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
 	  			xmlns:th="http://www.thymeleaf.org"
 	  			xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  			layout:decorator="'layout/LayoutPadrao'"
+	  			layout:decorate="~{layout/LayoutPadrao}"
 	  			xmlns:projectcad="http://projectcad.eletroinfoaudio.com">
 	<head>
 		<title>Dashboard</title>
 		
-		<link rel="stylesheet" type="text/css" th:href="@{/stylesheets/vendors/bootstrap-switch.min.css}"/>
 	
 	</head>
 	<body>
@@ -22,7 +21,7 @@
 			<!-- Conteudo -->
 		  	<div class="container-fluid">
 		  
-				<!-- Conteudo aqui! -->
+				<h3>Bem Vindo ao Cadastro de Projetos. Selecione uma opção no menu ao lado.</h3>
 		  
 		  	</div>
 		</section>
