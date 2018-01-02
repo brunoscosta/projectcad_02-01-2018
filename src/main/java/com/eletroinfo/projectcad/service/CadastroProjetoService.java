@@ -18,5 +18,10 @@ public class CadastroProjetoService {
 	public void salvar(Projeto projeto) {
 		projetos.save(projeto);
 	}
-
+	
+	@Transactional
+	public void excluir(Long codigo) {
+		projetos.delete(codigo);
+	}
+	
 }
