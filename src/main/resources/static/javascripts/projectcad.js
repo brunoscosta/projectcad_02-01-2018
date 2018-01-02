@@ -5,11 +5,12 @@
 ######Data: 30/12/2017
 ############################################################
 */
+var Projectcad = Projectcad || {};
 
 
 function scanData() {
-	inputDataInicio = document.getElementById("dinicio").value;
-	inputDataFim    = document.getElementById("dfim").value;
+	inputDataInicio = document.getElementById("dataInicio").value;
+	inputDataFim    = document.getElementById("dataFim").value;
 	
 	
 	if (inputDataInicio != '' && inputDataFim != ''){
@@ -27,3 +28,26 @@ function scanData() {
 	}else{document.getElementById('duracao').value = emHoras;}
 	}
 }
+
+Projectcad.Security = (function() {
+	
+	function Security() {
+		this.token = $('input[name=_csrf]').val();
+		this.header = $('input[name=_csrf_header]').val();
+	}
+	
+	Security.prototype.enable = function() {
+		$(document).ajaxSend(function(event, jqxhr, settings) {
+			jqxhr.setRequestHeader(this.header, this.token);
+		}.bind(this));
+	}
+	
+	return Security;
+	
+}());
+
+$(function() {
+	
+	var Security = new Projectcad.Security;
+	Security.enable();
+});
