@@ -62,6 +62,7 @@ public class webConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 		//adicionar os dialetos na templateEngine
 		engine.addDialect(new LayoutDialect());
 		engine.addDialect(new ProjectcadDialect());
+		engine.addDialect(new DataAttributeDialect());
 		engine.addDialect(new SpringSecurityDialect());
 		return engine;
 	}
